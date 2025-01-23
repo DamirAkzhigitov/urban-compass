@@ -1,18 +1,19 @@
-import { showBetaFeature } from '@repo/feature-flags';
-import { createMetadata } from '@repo/seo/metadata';
-import type { Metadata } from 'next';
-import { Cases } from './components/cases';
-import { CTA } from './components/cta';
-import { FAQ } from './components/faq';
-import { Features } from './components/features';
-import { Hero } from './components/hero';
-import { Stats } from './components/stats';
-import { Testimonials } from './components/testimonials';
+import { showBetaFeature } from "@repo/feature-flags";
+import { createMetadata } from "@repo/seo/metadata";
+import type { Metadata } from "next";
+import { Cases } from "./components/cases";
+import { CTA } from "./components/cta";
+import { FAQ } from "./components/faq";
+import { Features } from "./components/features";
+import { Hero } from "./components/hero";
+import { Stats } from "./components/stats";
+import { Testimonials } from "./components/testimonials";
 
 const meta = {
-  title: 'From zero to production in minutes.',
+  title:
+    "DA-MR | AI-Powered Tools & Automation for Bots, Helpers, and Seamless Deployments",
   description:
-    "next-forge is a production-grade boilerplate for modern Next.js apps. It's designed to have everything you need to build your new SaaS app as quick as possible. Authentication, billing, analytics, SEO, and more. It's all here.",
+    "Explore DA-MR, your hub for AI-driven solutions, automated deployments, intelligent bots, and digital helpers. Stay updated with the latest releases and transform workflows effortlessly.",
 };
 
 export const metadata: Metadata = createMetadata(meta);
