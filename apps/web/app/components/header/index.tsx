@@ -118,7 +118,7 @@ export const Header = () => {
             </NavigationMenuList>
           </NavigationMenu>
         </div>
-        <div className="flex items-center gap-2 lg:justify-center">
+        <Link href="/" className="flex items-center gap-2 lg:justify-center">
           <Image
             src={Logo}
             alt="Logo"
@@ -126,8 +126,8 @@ export const Header = () => {
             height={24}
             className="dark:invert"
           />
-          <p className="whitespace-nowrap font-semibold">Deep Automation</p>
-        </div>
+          <p className="md:whitespace-nowrap font-semibold">Deep Automation</p>
+        </Link>
         <div className="flex w-full justify-end gap-4">
           <Button variant="ghost" className="hidden md:inline" asChild>
             <Link href="/contact">Contact us</Link>
