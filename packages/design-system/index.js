@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DesignSystemProvider = void 0;
+const jsx_runtime_1 = require("react/jsx-runtime");
+const analytics_1 = require("@repo/analytics");
+const provider_1 = require("@repo/auth/provider");
+const sonner_1 = require("./components/ui/sonner");
+const tooltip_1 = require("./components/ui/tooltip");
+const theme_1 = require("./providers/theme");
+const DesignSystemProvider = ({ children, ...properties }) => ((0, jsx_runtime_1.jsx)(theme_1.ThemeProvider, { ...properties, children: (0, jsx_runtime_1.jsx)(provider_1.AuthProvider, { children: (0, jsx_runtime_1.jsxs)(analytics_1.AnalyticsProvider, { children: [(0, jsx_runtime_1.jsx)(tooltip_1.TooltipProvider, { children: children }), (0, jsx_runtime_1.jsx)(sonner_1.Toaster, {})] }) }) }));
+exports.DesignSystemProvider = DesignSystemProvider;
