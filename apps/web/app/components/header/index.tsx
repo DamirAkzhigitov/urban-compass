@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { env } from '@/env';
-import { ModeToggle } from '@repo/design-system/components/mode-toggle';
-import { Button } from '@repo/design-system/components/ui/button';
+import { env } from "@/env";
+import { ModeToggle } from "@repo/design-system/components/mode-toggle";
+import { Button } from "@repo/design-system/components/ui/button";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -10,55 +10,55 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from '@repo/design-system/components/ui/navigation-menu';
-import { Menu, MoveRight, X } from 'lucide-react';
-import Link from 'next/link';
-import { useState } from 'react';
+} from "@repo/design-system/components/ui/navigation-menu";
+import { Menu, MoveRight, X } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
 
-import Image from 'next/image';
-import Logo from './logo.svg';
+import Image from "next/image";
+import Logo from "./logo.svg";
 
 export const Header = () => {
   const navigationItems = [
     {
-      title: 'Home',
-      href: '/',
-      description: '',
+      title: "Home",
+      href: "/",
+      description: "",
     },
     {
-      title: 'Product',
-      description: 'Managing a small business today is already tough.',
+      title: "Product",
+      description: "Managing a small business today is already tough.",
       items: [
         {
-          title: 'Pricing',
-          href: '/pricing',
+          title: "Pricing",
+          href: "/pricing",
         },
         {
-          title: 'Pricing',
-          href: '/pricing',
+          title: "Pricing",
+          href: "/pricing",
         },
         {
-          title: 'Pricing',
-          href: '/pricing',
+          title: "Pricing",
+          href: "/pricing",
         },
         {
-          title: 'Pricing',
-          href: '/pricing',
+          title: "Pricing",
+          href: "/pricing",
         },
       ],
     },
     {
-      title: 'Blog',
-      href: '/blog',
-      description: '',
+      title: "Blog",
+      href: "/blog",
+      description: "",
     },
   ];
 
   if (env.NEXT_PUBLIC_DOCS_URL) {
     navigationItems.push({
-      title: 'Docs',
+      title: "Docs",
       href: env.NEXT_PUBLIC_DOCS_URL,
-      description: '',
+      description: "",
     });
   }
 
@@ -118,7 +118,7 @@ export const Header = () => {
             </NavigationMenuList>
           </NavigationMenu>
         </div>
-        <div className="flex items-center gap-2 lg:justify-center">
+        <Link href="/" className="flex items-center gap-2 lg:justify-center">
           <Image
             src={Logo}
             alt="Logo"
@@ -126,8 +126,8 @@ export const Header = () => {
             height={24}
             className="dark:invert"
           />
-          <p className="whitespace-nowrap font-semibold">next-forge</p>
-        </div>
+          <p className="md:whitespace-nowrap font-semibold">Deep Automation</p>
+        </Link>
         <div className="flex w-full justify-end gap-4">
           <Button variant="ghost" className="hidden md:inline" asChild>
             <Link href="/contact">Contact us</Link>
@@ -157,11 +157,11 @@ export const Header = () => {
                         href={item.href}
                         className="flex items-center justify-between"
                         target={
-                          item.href.startsWith('http') ? '_blank' : undefined
+                          item.href.startsWith("http") ? "_blank" : undefined
                         }
                         rel={
-                          item.href.startsWith('http')
-                            ? 'noopener noreferrer'
+                          item.href.startsWith("http")
+                            ? "noopener noreferrer"
                             : undefined
                         }
                       >
