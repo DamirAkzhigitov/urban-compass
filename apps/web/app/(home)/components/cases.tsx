@@ -1,14 +1,15 @@
-'use client';
+"use client";
 
 import {
   Carousel,
   type CarouselApi,
   CarouselContent,
   CarouselItem,
-} from '@repo/design-system/components/ui/carousel';
-import { useEffect, useState } from 'react';
+} from "@repo/design-system/components/ui/carousel";
+import { useEffect, useState } from "react";
+import { SkillItem } from "@repo/cms";
 
-export const Cases = () => {
+export const Cases = ({ skills }: { skills: SkillItem[] }) => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
 
@@ -33,14 +34,19 @@ export const Cases = () => {
       <div className="container mx-auto">
         <div className="flex flex-col gap-10">
           <h2 className="text-left font-regular text-xl tracking-tighter md:text-5xl lg:max-w-xl">
-            Trusted by thousands of businesses worldwide
+            My Skills
           </h2>
+
           <Carousel setApi={setApi} className="w-full">
             <CarouselContent>
-              {Array.from({ length: 15 }).map((_, index) => (
+              {skills.map((skill, index) => (
                 <CarouselItem className="basis-1/4 lg:basis-1/6" key={index}>
-                  <div className="flex aspect-square items-center justify-center rounded-md bg-muted p-6">
-                    <span className="text-sm">Logo {index + 1}</span>
+                  <div className="flex flex-col aspect-square items-center justify-center rounded-md bg-muted p-6">
+                    <div
+                      className="inline h-12 w-12 mb-3"
+                      dangerouslySetInnerHTML={{ __html: skill.logo }}
+                    />
+                    <span className="text-sm">{skill.name}</span>
                   </div>
                 </CarouselItem>
               ))}

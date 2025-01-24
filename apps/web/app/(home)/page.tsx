@@ -8,6 +8,9 @@ import { Features } from "./components/features";
 import { Hero } from "./components/hero";
 import { Stats } from "./components/stats";
 import { Testimonials } from "./components/testimonials";
+import { Feed } from "@repo/cms/components/feed";
+import { personal } from "@repo/cms";
+import { draftMode } from "next/headers";
 
 const meta = {
   title:
@@ -21,6 +24,8 @@ export const metadata: Metadata = createMetadata(meta);
 const Home = async () => {
   const betaFeature = await showBetaFeature();
 
+  const draft = await draftMode();
+
   return (
     <>
       {betaFeature && (
@@ -29,7 +34,15 @@ const Home = async () => {
         </div>
       )}
       <Hero />
-      <Cases />
+      <Feed queries={[personal.postsQuery]} draft={draft.isEnabled}>
+        {async ([data]) => {
+          "use server";
+          if (!data.personal.skills.items.length) {
+            return null;
+          }
+          return <Cases skills={data.personal.skills.items} />;
+        }}
+      </Feed>
       <Features />
       <Stats />
       <Testimonials />
