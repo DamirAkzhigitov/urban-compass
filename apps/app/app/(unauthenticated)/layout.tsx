@@ -1,8 +1,9 @@
 import { env } from '@/env';
 import { ModeToggle } from '@repo/design-system/components/mode-toggle';
-import { CommandIcon } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
+import Logo from './logo.svg';
 
 type AuthLayoutProps = {
   readonly children: ReactNode;
@@ -13,8 +14,14 @@ const AuthLayout = ({ children }: AuthLayoutProps) => (
     <div className="relative hidden h-full flex-col bg-muted p-10 text-white lg:flex dark:border-r">
       <div className="absolute inset-0 bg-zinc-900" />
       <div className="relative z-20 flex items-center font-medium text-lg">
-        <CommandIcon className="mr-2 h-6 w-6" />
-        Acme Inc
+        <Image
+          src={Logo}
+          alt="Logo"
+          width={24}
+          height={24}
+          className="mr-2 h-6 w-6"
+        />
+        DA-MR Dashboard
       </div>
       <div className="absolute top-4 right-4">
         <ModeToggle />

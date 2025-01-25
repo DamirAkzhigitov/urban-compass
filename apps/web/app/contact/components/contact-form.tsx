@@ -1,113 +1,70 @@
-'use client';
+import { MessageForm } from '@/app/contact/components/message-form';
+import { showContactBackForm } from '@repo/feature-flags';
+import { Check } from 'lucide-react';
+import Background from './background.webp';
+import { SocialCard } from './social-card';
 
-import { Button } from '@repo/design-system/components/ui/button';
-import { Calendar } from '@repo/design-system/components/ui/calendar';
-import { Input } from '@repo/design-system/components/ui/input';
-import { Label } from '@repo/design-system/components/ui/label';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@repo/design-system/components/ui/popover';
-import { cn } from '@repo/design-system/lib/utils';
-import { format } from 'date-fns';
-import { CalendarIcon, Check, MoveRight } from 'lucide-react';
-import { useState } from 'react';
-
-export const ContactForm = () => {
-  const [date, setDate] = useState<Date | undefined>(new Date());
+export const ContactForm = async () => {
+  const contact = await showContactBackForm();
 
   return (
-    <div className="w-full py-20 lg:py-40">
+    <div className="w-full py-10 lg:py-20">
       <div className="container mx-auto max-w-6xl">
-        <div className="grid gap-10 lg:grid-cols-2">
-          <div className="flex flex-col gap-6">
-            <div className="flex flex-col gap-4">
-              <div className="flex flex-col gap-2">
-                <h4 className="max-w-xl text-left font-regular text-3xl tracking-tighter md:text-5xl">
-                  Something new
-                </h4>
-                <p className="max-w-sm text-left text-lg text-muted-foreground leading-relaxed tracking-tight">
-                  Managing a small business today is already tough. Avoid
-                  further complications by ditching outdated, tedious trade
-                  methods.
-                </p>
+        <div className="grid gap-10">
+          <div
+            className="relative flex flex-col gap-6 overflow-hidden rounded-2xl bg-[-500px] bg-cover bg-opacity-70 bg-no-repeat p-5 min-[440px]:bg-center"
+            style={{ backgroundImage: `url(${Background.src})` }}
+          >
+            <div className="z-10 flex w-full flex-col gap-6 rounded-2xl bg-white bg-opacity-85 p-5 sm:w-2/4 md:w-1/3 dark:bg-black dark:bg-opacity-75">
+              <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-2">
+                  <h4 className="max-w-xl text-left font-regular text-3xl tracking-tighter md:text-5xl">
+                    Let's Build Something Together!
+                  </h4>
+                  <p className="max-w-sm text-left text-lg text-muted-foreground leading-relaxed tracking-tight">
+                    Welcome to my portfolio! As a passionate developer, I&apos;m
+                    always open to discussing exciting projects and new
+                    opportunities. You can reach me on LinkedIn or drop a
+                    message via the contact form below — I&apos;ll get back to
+                    you as soon as possible!
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className="flex flex-row items-start gap-6 text-left">
-              <Check className="mt-2 h-4 w-4 text-primary" />
-              <div className="flex flex-col gap-1">
-                <p>Easy to use</p>
-                <p className="text-muted-foreground text-sm">
-                  We&apos;ve made it easy to use and understand.
-                </p>
+              <div className="flex flex-row items-start gap-6 text-left">
+                <Check className="mt-2 h-4 w-4 text-primary" />
+                <div className="flex flex-col gap-1">
+                  <p>5+ years in development</p>
+                  <p className="text-muted-foreground text-sm">
+                    Building interfaces that not only look great but work even
+                    better.
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className="flex flex-row items-start gap-6 text-left">
-              <Check className="mt-2 h-4 w-4 text-primary" />
-              <div className="flex flex-col gap-1">
-                <p>Fast and reliable</p>
-                <p className="text-muted-foreground text-sm">
-                  We&apos;ve made it easy to use and understand.
-                </p>
+              <div className="flex flex-row items-start gap-6 text-left">
+                <Check className="mt-2 h-4 w-4 text-primary" />
+                <div className="flex flex-col gap-1">
+                  <p>A responsible approach to work</p>
+                  <p className="text-muted-foreground text-sm">
+                    Writing code I&apos;ll still be proud of years from now.
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className="flex flex-row items-start gap-6 text-left">
-              <Check className="mt-2 h-4 w-4 text-primary" />
-              <div className="flex flex-col gap-1">
-                <p>Beautiful and modern</p>
-                <p className="text-muted-foreground text-sm">
-                  We&apos;ve made it easy to use and understand.
-                </p>
+              <div className="flex flex-row items-start gap-6 text-left">
+                <Check className="mt-2 h-4 w-4 text-primary" />
+                <div className="flex flex-col gap-1">
+                  <p>Always exploring new solutions</p>
+                  <p className="text-muted-foreground text-sm">
+                    Continuously learning, experimenting, and adopting new
+                    technologies to stay ahead.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="flex items-center justify-center">
-            <div className="flex max-w-sm flex-col gap-4 rounded-md border p-8">
-              <p>Book a meeting</p>
-              <div className="grid w-full max-w-sm items-center gap-1">
-                <Label htmlFor="picture">Date</Label>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button
-                      variant="outline"
-                      className={cn(
-                        'w-full max-w-sm justify-start text-left font-normal',
-                        !date && 'text-muted-foreground'
-                      )}
-                    >
-                      <CalendarIcon className="mr-2 h-4 w-4" />
-                      {date ? format(date, 'PPP') : <span>Pick a date</span>}
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0">
-                    <Calendar
-                      mode="single"
-                      selected={date}
-                      onSelect={setDate}
-                      initialFocus
-                    />
-                  </PopoverContent>
-                </Popover>
-              </div>
-              <div className="grid w-full max-w-sm items-center gap-1">
-                <Label htmlFor="firstname">First name</Label>
-                <Input id="firstname" type="text" />
-              </div>
-              <div className="grid w-full max-w-sm items-center gap-1">
-                <Label htmlFor="lastname">Last name</Label>
-                <Input id="lastname" type="text" />
-              </div>
-              <div className="grid w-full max-w-sm items-center gap-1">
-                <Label htmlFor="picture">Upload resume</Label>
-                <Input id="picture" type="file" />
-              </div>
-
-              <Button className="w-full gap-4">
-                Book the meeting <MoveRight className="h-4 w-4" />
-              </Button>
-            </div>
+          <div className="flex flex-row flex-wrap items-center justify-center gap-4">
+            <SocialCard />
+            {contact ? <MessageForm /> : ''}
           </div>
         </div>
       </div>
