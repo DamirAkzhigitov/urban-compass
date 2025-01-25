@@ -1,20 +1,19 @@
 'use client';
 
 import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@repo/design-system/components/ui/avatar';
-import {
   Carousel,
   type CarouselApi,
   CarouselContent,
-  CarouselItem,
 } from '@repo/design-system/components/ui/carousel';
-import { User } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { ExperienceItem } from '@repo/cms/blocks/Experience';
+import { JobItem } from '@/app/(home)/components/jobItem';
 
-export const Testimonials = () => {
+export const Testimonials = ({
+  experience,
+}: {
+  experience: ExperienceItem[];
+}) => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
 
@@ -22,7 +21,6 @@ export const Testimonials = () => {
     if (!api) {
       return;
     }
-
     setTimeout(() => {
       if (api.selectedScrollSnap() + 1 === api.scrollSnapList().length) {
         setCurrent(0);
@@ -31,7 +29,7 @@ export const Testimonials = () => {
         api.scrollNext();
         setCurrent(current + 1);
       }
-    }, 4000);
+    }, 5000);
   }, [api, current]);
 
   return (
@@ -39,36 +37,13 @@ export const Testimonials = () => {
       <div className="container mx-auto">
         <div className="flex flex-col gap-10">
           <h2 className="text-left font-regular text-3xl tracking-tighter md:text-5xl lg:max-w-xl">
-            Trusted by thousands of businesses worldwide
+            My Work Experience
           </h2>
           <Carousel setApi={setApi} className="w-full">
             <CarouselContent>
-              {Array.from({ length: 15 }).map((_, index) => (
-                <CarouselItem className="lg:basis-1/2" key={index}>
-                  <div className="flex aspect-video h-full flex-col justify-between rounded-md bg-muted p-6 lg:col-span-2">
-                    <User className="h-8 w-8 stroke-1" />
-                    <div className="flex flex-col gap-4">
-                      <div className="flex flex-col">
-                        <h3 className="text-xl tracking-tight">
-                          Best decision
-                        </h3>
-                        <p className="max-w-xs text-base text-muted-foreground">
-                          Our goal was to streamline SMB trade, making it easier
-                          and faster than ever and we did it together.
-                        </p>
-                      </div>
-                      <p className="flex flex-row items-center gap-2 text-sm">
-                        <span className="text-muted-foreground">By</span>
-                        <Avatar className="h-6 w-6">
-                          <AvatarImage src="https://github.com/shadcn.png" />
-                          <AvatarFallback>CN</AvatarFallback>
-                        </Avatar>
-                        <span>John Johnsen</span>
-                      </p>
-                    </div>
-                  </div>
-                </CarouselItem>
-              ))}
+              {experience.map((item, index) => {
+                return <JobItem value={item} key={index} />;
+              })}
             </CarouselContent>
           </Carousel>
         </div>

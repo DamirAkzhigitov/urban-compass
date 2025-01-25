@@ -1,20 +1,9 @@
 import { basehub as basehubClient, fragmentOn } from 'basehub';
 import { keys } from './keys';
+import { imageFragment } from './blocks/Shared';
 
-const basehub = basehubClient({
+export const basehub = basehubClient({
   token: keys().BASEHUB_TOKEN,
-});
-
-/* -------------------------------------------------------------------------------------------------
- * Common Fragments
- * -----------------------------------------------------------------------------------------------*/
-
-const imageFragment = fragmentOn('BlockImage', {
-  url: true,
-  width: true,
-  height: true,
-  alt: true,
-  blurDataURL: true,
 });
 
 /* -------------------------------------------------------------------------------------------------
@@ -175,26 +164,5 @@ export const legal = {
     const data = await basehub.query(query);
 
     return data.legalPages.item;
-  },
-};
-const skillFragment = fragmentOn('SkillsItem', {
-  name: true,
-  logo: true,
-});
-
-export type SkillItem = fragmentOn.infer<typeof skillFragment>;
-
-export const personal = {
-  postsQuery: fragmentOn('Query', {
-    personal: {
-      skills: {
-        items: skillFragment,
-      },
-    },
-  }),
-  getSkills: async (): Promise<SkillItem[]> => {
-    const data = await basehub.query(personal.postsQuery);
-
-    return data.personal.skills.items;
   },
 };

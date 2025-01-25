@@ -37,5 +37,8 @@
     "@clack/prompts": "^0.9.1",
     "commander": "^13.1.0"
   },
-  "type": "module"
+  "type": "module",
+  "prettier": {
+    "singleQuote": true
+  }
 }

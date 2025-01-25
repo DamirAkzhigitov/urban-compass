@@ -11,8 +11,9 @@ const arcjetKey = keys().ARCJET_KEY;
 
 export const secure = async (
   allow: (ArcjetWellKnownBot | ArcjetBotCategory)[],
-  sourceRequest?: Request
+  sourceRequest?: Request,
 ) => {
+  if (process.env.NODE_ENV === 'development') return;
   if (!arcjetKey) {
     return;
   }
@@ -38,7 +39,7 @@ export const secure = async (
 
   if (decision.isDenied()) {
     console.warn(
-      `Arcjet decision: ${JSON.stringify(decision.reason, null, 2)}`
+      `Arcjet decision: ${JSON.stringify(decision.reason, null, 2)}`,
     );
 
     if (decision.reason.isBot()) {
