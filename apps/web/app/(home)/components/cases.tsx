@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
+import type { SkillItem } from '@repo/cms';
 import {
   Carousel,
   type CarouselApi,
   CarouselContent,
   CarouselItem,
-} from "@repo/design-system/components/ui/carousel";
-import { useEffect, useState } from "react";
-import { SkillItem } from "@repo/cms";
+} from '@repo/design-system/components/ui/carousel';
+import { useEffect, useState } from 'react';
 
 export const Cases = ({ skills }: { skills: SkillItem[] }) => {
   const [api, setApi] = useState<CarouselApi>();
@@ -40,10 +40,13 @@ export const Cases = ({ skills }: { skills: SkillItem[] }) => {
           <Carousel setApi={setApi} className="w-full">
             <CarouselContent>
               {skills.map((skill, index) => (
-                <CarouselItem className="basis-1/2` lg:basis-1/6" key={index}>
-                  <div className="flex flex-col aspect-square items-center justify-center rounded-md bg-muted p-6">
+                <CarouselItem
+                  className="min-w-[130px] basis-1/2` lg:basis-1/6"
+                  key={index}
+                >
+                  <div className="flex aspect-square flex-col items-center justify-center rounded-md bg-muted p-6">
                     <div
-                      className="inline h-12 w-12 mb-3"
+                      className="mb-3 inline h-12 w-12 fill-black dark:fill-white"
                       dangerouslySetInnerHTML={{ __html: skill.logo }}
                     />
                     <span className="text-sm">{skill.name}</span>

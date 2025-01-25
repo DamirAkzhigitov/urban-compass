@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { Label } from "@repo/design-system/components/ui/label";
-import { Input } from "@repo/design-system/components/ui/input";
-import { Textarea } from "@repo/design-system/components/ui/textarea";
-import { Button } from "@repo/design-system/components/ui/button";
-import { MoveRight } from "lucide-react";
-import Form from "next/form";
+import { Button } from '@repo/design-system/components/ui/button';
+import { Input } from '@repo/design-system/components/ui/input';
+import { Label } from '@repo/design-system/components/ui/label';
+import { Textarea } from '@repo/design-system/components/ui/textarea';
+import { MoveRight } from 'lucide-react';
+import Form from 'next/form';
 
 export const MessageForm = () => {
   const sendMessage = () => {};
@@ -13,7 +13,7 @@ export const MessageForm = () => {
   return (
     <Form
       action={sendMessage}
-      className="flex max-w-sm flex-col gap-4 rounded-md border p-8 w-72 min-h-[490px]"
+      className="flex min-h-[490px] w-72 max-w-sm flex-col gap-4 rounded-md border p-8"
     >
       <p>Contact me</p>
 

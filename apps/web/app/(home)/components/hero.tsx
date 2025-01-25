@@ -1,10 +1,9 @@
-import { env } from "@/env";
-import { blog } from "@repo/cms";
-import { Feed } from "@repo/cms/components/feed";
-import { Button } from "@repo/design-system/components/ui/button";
-import { MoveRight, PhoneCall } from "lucide-react";
-import { draftMode } from "next/headers";
-import Link from "next/link";
+import { blog } from '@repo/cms';
+import { Feed } from '@repo/cms/components/feed';
+import { Button } from '@repo/design-system/components/ui/button';
+import { MoveRight, PhoneCall } from 'lucide-react';
+import { draftMode } from 'next/headers';
+import Link from 'next/link';
 
 export const Hero = async () => {
   const draft = await draftMode();
@@ -17,7 +16,7 @@ export const Hero = async () => {
             <Feed queries={[blog.latestPostQuery]} draft={draft.isEnabled}>
               {/* biome-ignore lint/suspicious/useAwait: "Server Actions must be async" */}
               {async ([data]) => {
-                "use server";
+                'use server';
 
                 return (
                   <Button
@@ -28,7 +27,7 @@ export const Hero = async () => {
                   >
                     <Link
                       href={`/blog/${data.blog.posts.item?._slug}`}
-                      style={{ color: "black" }}
+                      style={{ color: 'black' }}
                     >
                       Read latest article <MoveRight className="h-4 w-4" />
                     </Link>

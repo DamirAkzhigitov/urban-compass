@@ -1,8 +1,8 @@
-import { Check } from "lucide-react";
-import Background from "./background.webp";
-import { SocialCard } from "./social-card";
-import { MessageForm } from "@/app/contact/components/message-form";
-import { showContactBackForm } from "@repo/feature-flags";
+import { MessageForm } from '@/app/contact/components/message-form';
+import { showContactBackForm } from '@repo/feature-flags';
+import { Check } from 'lucide-react';
+import Background from './background.webp';
+import { SocialCard } from './social-card';
 
 export const ContactForm = async () => {
   const contact = await showContactBackForm();
@@ -12,10 +12,10 @@ export const ContactForm = async () => {
       <div className="container mx-auto max-w-6xl">
         <div className="grid gap-10">
           <div
-            className="flex flex-col gap-6 relative rounded-2xl p-5 overflow-hidden bg-cover bg-center bg-no-repeat bg-opacity-70"
+            className="relative flex flex-col gap-6 overflow-hidden rounded-2xl bg-[-500px] bg-cover bg-opacity-70 bg-no-repeat p-5 min-[440px]:bg-center"
             style={{ backgroundImage: `url(${Background.src})` }}
           >
-            <div className="flex flex-col gap-6 p-5 rounded-2xl bg-white bg-opacity-95 z-10 w-full sm:w-2/4 md:w-1/3">
+            <div className="z-10 flex w-full flex-col gap-6 rounded-2xl bg-white bg-opacity-85 p-5 sm:w-2/4 md:w-1/3 dark:bg-black dark:bg-opacity-75">
               <div className="flex flex-col gap-4">
                 <div className="flex flex-col gap-2">
                   <h4 className="max-w-xl text-left font-regular text-3xl tracking-tighter md:text-5xl">
@@ -62,9 +62,9 @@ export const ContactForm = async () => {
             </div>
           </div>
 
-          <div className="flex items-center justify-center gap-4 flex-row flex-wrap">
+          <div className="flex flex-row flex-wrap items-center justify-center gap-4">
             <SocialCard />
-            {contact ? <MessageForm /> : ""}
+            {contact ? <MessageForm /> : ''}
           </div>
         </div>
       </div>

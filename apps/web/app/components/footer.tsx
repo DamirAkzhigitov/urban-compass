@@ -1,7 +1,7 @@
-import { env } from "@/env";
-import type { LegalPostMeta } from "@repo/cms";
-import { Status } from "@repo/observability/status";
-import Link from "next/link";
+import { env } from '@/env';
+import type { LegalPostMeta } from '@repo/cms';
+import { Status } from '@repo/observability/status';
+import Link from 'next/link';
 
 export const Footer = ({
   legalPostsMeta,
@@ -10,23 +10,23 @@ export const Footer = ({
 }) => {
   const navigationItems = [
     {
-      title: "Home",
-      href: "/",
-      description: "",
+      title: 'Home',
+      href: '/',
+      description: '',
     },
     {
-      title: "Pages",
-      description: "Managing a small business today is already tough.",
+      title: 'Pages',
+      description: 'Managing a small business today is already tough.',
       items: [
         {
-          title: "Blog",
-          href: "/blog",
+          title: 'Blog',
+          href: '/blog',
         },
       ],
     },
     {
-      title: "Legal",
-      description: "We stay on top of the latest legal requirements.",
+      title: 'Legal',
+      description: 'We stay on top of the latest legal requirements.',
       items: legalPostsMeta.map((post) => {
         return {
           title: post._title,
@@ -38,7 +38,7 @@ export const Footer = ({
 
   if (env.NEXT_PUBLIC_DOCS_URL) {
     navigationItems.at(1)?.items?.push({
-      title: "Docs",
+      title: 'Docs',
       href: env.NEXT_PUBLIC_DOCS_URL,
     });
   }
@@ -71,11 +71,11 @@ export const Footer = ({
                         href={item.href}
                         className="flex items-center justify-between"
                         target={
-                          item.href.includes("http") ? "_blank" : undefined
+                          item.href.includes('http') ? '_blank' : undefined
                         }
                         rel={
-                          item.href.includes("http")
-                            ? "noopener noreferrer"
+                          item.href.includes('http')
+                            ? 'noopener noreferrer'
                             : undefined
                         }
                       >
@@ -90,11 +90,11 @@ export const Footer = ({
                         href={subItem.href}
                         className="flex items-center justify-between"
                         target={
-                          subItem.href.includes("http") ? "_blank" : undefined
+                          subItem.href.includes('http') ? '_blank' : undefined
                         }
                         rel={
-                          subItem.href.includes("http")
-                            ? "noopener noreferrer"
+                          subItem.href.includes('http')
+                            ? 'noopener noreferrer'
                             : undefined
                         }
                       >

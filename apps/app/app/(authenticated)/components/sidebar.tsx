@@ -1,20 +1,20 @@
-"use client";
+'use client';
 
-import { OrganizationSwitcher, UserButton } from "@repo/auth/client";
-import { ModeToggle } from "@repo/design-system/components/mode-toggle";
-import { Button } from "@repo/design-system/components/ui/button";
+import { OrganizationSwitcher, UserButton } from '@repo/auth/client';
+import { ModeToggle } from '@repo/design-system/components/mode-toggle';
+import { Button } from '@repo/design-system/components/ui/button';
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@repo/design-system/components/ui/collapsible";
+} from '@repo/design-system/components/ui/collapsible';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@repo/design-system/components/ui/dropdown-menu";
+} from '@repo/design-system/components/ui/dropdown-menu';
 import {
   Sidebar,
   SidebarContent,
@@ -32,30 +32,20 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
   useSidebar,
-} from "@repo/design-system/components/ui/sidebar";
-import { cn } from "@repo/design-system/lib/utils";
-import { NotificationsTrigger } from "@repo/notifications/components/trigger";
+} from '@repo/design-system/components/ui/sidebar';
+import { cn } from '@repo/design-system/lib/utils';
+import { NotificationsTrigger } from '@repo/notifications/components/trigger';
 import {
-  AnchorIcon,
-  BookOpenIcon,
-  BotIcon,
   ChevronRightIcon,
   FolderIcon,
-  FrameIcon,
-  LifeBuoyIcon,
-  MapIcon,
   MoreHorizontalIcon,
-  PieChartIcon,
-  SendIcon,
-  Settings2Icon,
   ShareIcon,
   SquareTerminalIcon,
   Trash2Icon,
-} from "lucide-react";
-import type { ReactNode } from "react";
-import { Search } from "./search";
-import Link from "next/link";
-import { Icon } from "next/dist/lib/metadata/types/metadata-types";
+} from 'lucide-react';
+import Link from 'next/link';
+import type { ReactNode } from 'react';
+import { Search } from './search';
 
 type GlobalSidebarProperties = {
   readonly children: ReactNode;
@@ -83,20 +73,20 @@ interface SideBarData {
 
 const data: SideBarData = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    name: 'shadcn',
+    email: 'm@example.com',
+    avatar: '/avatars/shadcn.jpg',
   },
   navMain: [
     {
-      title: "Playground",
-      url: "/",
+      title: 'Playground',
+      url: '/',
       icon: SquareTerminalIcon,
       isActive: true,
       items: [
         {
-          title: "Code Review",
-          url: "/code-review",
+          title: 'Code Review',
+          url: '/code-review',
         },
       ],
     },
@@ -116,8 +106,8 @@ export const GlobalSidebar = ({ children }: GlobalSidebarProperties) => {
             <SidebarMenuItem>
               <div
                 className={cn(
-                  "h-[36px] overflow-hidden transition-all [&>div]:w-full",
-                  sidebar.open ? "" : "-mx-1",
+                  'h-[36px] overflow-hidden transition-all [&>div]:w-full',
+                  sidebar.open ? '' : '-mx-1'
                 )}
               >
                 <OrganizationSwitcher
@@ -249,9 +239,9 @@ export const GlobalSidebar = ({ children }: GlobalSidebarProperties) => {
                 showName
                 appearance={{
                   elements: {
-                    rootBox: "flex overflow-hidden w-full",
-                    userButtonBox: "flex-row-reverse",
-                    userButtonOuterIdentifier: "truncate pl-0",
+                    rootBox: 'flex overflow-hidden w-full',
+                    userButtonBox: 'flex-row-reverse',
+                    userButtonOuterIdentifier: 'truncate pl-0',
                   },
                 }}
               />

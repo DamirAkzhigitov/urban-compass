@@ -1,22 +1,22 @@
-import avatar from "./avatar.webp";
-import Image from "next/image";
+import Image from 'next/image';
+import avatar from './avatar.webp';
 
 export const SocialCard = () => {
   return (
-    <div className="flex max-w-sm flex-col gap-4 rounded-md border p-8 w-72 min-h-[490px] ">
-      <div className="text-center my-4">
+    <div className="flex min-h-[490px] w-72 max-w-sm flex-col gap-4 rounded-md border p-8 ">
+      <div className="my-4 text-center">
         <Image
-          className="h-32 w-32 rounded-full border-4 border-white dark:border-gray-800 mx-auto my-4"
+          className="mx-auto my-4 h-32 w-32 rounded-full border-4 border-white dark:border-gray-800"
           src={avatar}
           alt=""
         />
         <div className="py-2">
-          <h3 className="font-bold text-2xl text-gray-800 dark:text-white mb-1">
+          <h3 className="mb-1 font-bold text-2xl text-gray-800 dark:text-white">
             Damir Akzhigitov
           </h3>
-          <div className="inline-flex text-gray-700 dark:text-gray-300 items-center">
+          <div className="inline-flex items-center text-gray-700 dark:text-gray-300">
             <svg
-              className="h-5 w-5 text-gray-400 dark:text-gray-600 mr-1"
+              className="mr-1 h-5 w-5 text-gray-400 dark:text-gray-600"
               fill="currentColor"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -36,7 +36,8 @@ export const SocialCard = () => {
         <a
           href="https://linkedin.com/in/damir-akzhigitov"
           target="_blank"
-          className="flex-1 inline-flex items-center justify-center text-center rounded-full bg-blue-600 dark:bg-blue-800 text-white dark:text-white antialiased font-bold hover:bg-blue-800 dark:hover:bg-blue-900 px-4 py-2"
+          className="inline-flex flex-1 items-center justify-center rounded-full bg-blue-600 px-4 py-2 text-center font-bold text-white antialiased hover:bg-blue-800 dark:bg-blue-800 dark:text-white dark:hover:bg-blue-900"
+          rel="noreferrer"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
