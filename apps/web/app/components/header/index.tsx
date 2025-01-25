@@ -130,7 +130,7 @@ export const Header = () => {
         </Link>
         <div className="flex w-full justify-end gap-4">
           <Button variant="ghost" className="hidden md:inline" asChild>
-            <Link href="/contact">Contact us</Link>
+            <Link href="/contact">Contact me</Link>
           </Button>
           <div className="hidden border-r md:inline" />
           <div className="hidden md:inline">
