@@ -16,21 +16,26 @@ export const Testimonials = ({
 }) => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
+  const [timeout, setTimer] = useState<NodeJS.Timeout>();
 
   useEffect(() => {
     if (!api) {
       return;
     }
-    setTimeout(() => {
-      if (api.selectedScrollSnap() + 1 === api.scrollSnapList().length) {
-        setCurrent(0);
-        api.scrollTo(0);
-      } else {
-        api.scrollNext();
-        setCurrent(current + 1);
-      }
-    }, 5000);
+    setTimer(
+      setTimeout(() => {
+        if (api.selectedScrollSnap() + 1 === api.scrollSnapList().length) {
+          setCurrent(0);
+          api.scrollTo(0);
+        } else {
+          api.scrollNext();
+          setCurrent(current + 1);
+        }
+      }, 5000),
+    );
   }, [api, current]);
+
+  const onClickCard = () => clearTimeout(timeout);
 
   return (
     <div className="w-full py-20 lg:py-40">
@@ -42,7 +47,9 @@ export const Testimonials = ({
           <Carousel setApi={setApi} className="w-full">
             <CarouselContent>
               {experience.map((item, index) => {
-                return <JobItem value={item} key={index} />;
+                return (
+                  <JobItem value={item} key={index} onClick={onClickCard} />
+                );
               })}
             </CarouselContent>
           </Carousel>

@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation';
 import { AvatarStack } from './components/avatar-stack';
 import { Cursors } from './components/cursors';
 import { Header } from './components/header';
+// import { captureException } from '@sentry/nextjs';
 
 const title =
   'DA-MR Dashboard | Manage AI Tools, Deployments, and Bot Automation';
@@ -15,8 +16,8 @@ const description =
 
 const CollaborationProvider = dynamic(() =>
   import('./components/collaboration-provider').then(
-    (mod) => mod.CollaborationProvider
-  )
+    (mod) => mod.CollaborationProvider,
+  ),
 );
 
 export const metadata: Metadata = {
@@ -31,6 +32,8 @@ const App = async () => {
   if (!orgId) {
     notFound();
   }
+
+  // captureException(new Error('My error message'));
 
   return (
     <>

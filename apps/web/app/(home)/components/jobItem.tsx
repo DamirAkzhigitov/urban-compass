@@ -2,10 +2,16 @@ import { CarouselItem } from '@repo/design-system/components/ui/carousel';
 import { ExperienceItem } from '@repo/cms';
 import Image from 'next/image';
 
-export const JobItem = ({ value }: { value: ExperienceItem }) => {
+export const JobItem = ({
+  value,
+  onClick,
+}: {
+  value: ExperienceItem;
+  onClick: () => void;
+}) => {
   return (
-    <CarouselItem className="lg:basis-1/2">
-      <div className="flex aspect-video h-full flex-col justify-between rounded-md bg-muted p-6 lg:col-span-2">
+    <CarouselItem className="lg:basis-1/2" onMouseDown={onClick}>
+      <div className="flex h-full flex-col justify-between rounded-md bg-muted p-6 lg:col-span-2">
         {value.image?.url ? (
           <Image
             src={value.image.url}
