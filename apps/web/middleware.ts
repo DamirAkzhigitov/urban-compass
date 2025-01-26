@@ -20,7 +20,7 @@ const securityHeaders = env.FLAGS_SECRET
   : noseconeMiddleware(noseconeOptions);
 
 export default authMiddleware(async (_auth, request) => {
-  if (!env.ARCJET_KEY) {
+  if (!env.ARCJET_KEY || process.env.NODE_ENV === 'development') {
     return securityHeaders();
   }
 
@@ -32,7 +32,7 @@ export default authMiddleware(async (_auth, request) => {
         'CATEGORY:PREVIEW', // Allow preview links to show OG images
         'CATEGORY:MONITOR', // Allow uptime monitoring services
       ],
-      request
+      request,
     );
 
     return securityHeaders();

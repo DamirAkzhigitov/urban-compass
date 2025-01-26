@@ -1,29 +1,23 @@
-import { personal } from '@repo/cms';
+import { skills, experience } from '@repo/cms/';
 import { Feed } from '@repo/cms/components/feed';
 import { showBetaFeature } from '@repo/feature-flags';
 import { createMetadata } from '@repo/seo/metadata';
 import type { Metadata } from 'next';
 import { draftMode } from 'next/headers';
 import { Cases } from './components/cases';
-import { CTA } from './components/cta';
-import { FAQ } from './components/faq';
-import { Features } from './components/features';
 import { Hero } from './components/hero';
-import { Stats } from './components/stats';
 import { Testimonials } from './components/testimonials';
 
 const meta = {
-  title:
-    'DA-MR | AI-Powered Tools & Automation for Bots, Helpers, and Seamless Deployments',
+  title: 'Damir Akzhigitov | Frontend Developer Portfolio',
   description:
-    'Explore DA-MR, your hub for AI-driven solutions, automated deployments, intelligent bots, and digital helpers. Stay updated with the latest releases and transform workflows effortlessly.',
+    'Welcome to my portfolio—showcasing expertise in scalable frontend development, micro-frontend architectures, CI/CD automation, and cutting-edge technologies. Discover my projects, career journey, and contributions to modern web development.',
 };
 
 export const metadata: Metadata = createMetadata(meta);
 
 const Home = async () => {
   const betaFeature = await showBetaFeature();
-
   const draft = await draftMode();
 
   return (
@@ -34,7 +28,7 @@ const Home = async () => {
         </div>
       )}
       <Hero />
-      <Feed queries={[personal.postsQuery]} draft={draft.isEnabled}>
+      <Feed queries={[skills.postsQuery]} draft={draft.isEnabled}>
         {async ([data]) => {
           'use server';
           if (!data.personal.skills.items.length) {
@@ -43,11 +37,17 @@ const Home = async () => {
           return <Cases skills={data.personal.skills.items} />;
         }}
       </Feed>
-      <Features />
-      <Stats />
-      <Testimonials />
-      <FAQ />
-      <CTA />
+      <Feed queries={[experience.postsQuery]} draft={draft.isEnabled}>
+        {async ([data]) => {
+          'use server';
+
+          if (!data.personal.experience.items.length) {
+            return null;
+          }
+
+          return <Testimonials experience={data.personal.experience.items} />;
+        }}
+      </Feed>
     </>
   );
 };

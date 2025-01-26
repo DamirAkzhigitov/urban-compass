@@ -1,20 +1,9 @@
 import { basehub as basehubClient, fragmentOn } from 'basehub';
 import { keys } from './keys';
+import { imageFragment } from './blocks/Shared';
 
-const basehub = basehubClient({
+export const basehub = basehubClient({
   token: keys().BASEHUB_TOKEN,
-});
-
-/* -------------------------------------------------------------------------------------------------
- * Common Fragments
- * -----------------------------------------------------------------------------------------------*/
-
-const imageFragment = fragmentOn('BlockImage', {
-  url: true,
-  width: true,
-  height: true,
-  alt: true,
-  blurDataURL: true,
 });
 
 /* -------------------------------------------------------------------------------------------------
@@ -177,6 +166,7 @@ export const legal = {
     return data.legalPages.item;
   },
 };
+
 const skillFragment = fragmentOn('SkillsItem', {
   name: true,
   logo: true,
@@ -184,7 +174,7 @@ const skillFragment = fragmentOn('SkillsItem', {
 
 export type SkillItem = fragmentOn.infer<typeof skillFragment>;
 
-export const personal = {
+export const skills = {
   postsQuery: fragmentOn('Query', {
     personal: {
       skills: {
@@ -193,8 +183,33 @@ export const personal = {
     },
   }),
   getSkills: async (): Promise<SkillItem[]> => {
-    const data = await basehub.query(personal.postsQuery);
+    const data = await basehub.query(skills.postsQuery);
 
     return data.personal.skills.items;
+  },
+};
+const experienceFragment = fragmentOn('ExperienceItem', {
+  companyName: true,
+  position: true,
+  location: true,
+  dateRange: true,
+  description: true,
+  image: imageFragment,
+});
+
+export type ExperienceItem = fragmentOn.infer<typeof experienceFragment>;
+
+export const experience = {
+  postsQuery: fragmentOn('Query', {
+    personal: {
+      experience: {
+        items: experienceFragment,
+      },
+    },
+  }),
+  getExperience: async (): Promise<ExperienceItem[]> => {
+    const data = await basehub.query(experience.postsQuery);
+
+    return data.personal.experience.items;
   },
 };
