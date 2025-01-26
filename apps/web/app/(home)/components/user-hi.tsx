@@ -66,15 +66,14 @@ export const UserHi = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
+        className="text-center font-bold"
       >
-        <div className="text-center font-bold mt-5">
-          <p className="text-blue-500 mb-2 animate-pulse">
-            Total hellos:{' '}
-            <span className="text-pink-500" id="counter">
-              {count}
-            </span>
-          </p>
-        </div>
+        <p className="animate-pulse">
+          Total hellos:{' '}
+          <span className="text-pink-500" id="counter">
+            {count}
+          </span>
+        </p>
       </motion.div>
     </div>
   );
