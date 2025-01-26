@@ -4,6 +4,7 @@ import { Button } from '@repo/design-system/components/ui/button';
 import { MoveRight, PhoneCall } from 'lucide-react';
 import { draftMode } from 'next/headers';
 import Link from 'next/link';
+import { UserHi } from '@/app/(home)/components/user-hi';
 
 export const Hero = async () => {
   const draft = await draftMode();
@@ -44,12 +45,13 @@ export const Hero = async () => {
               Frontend Developer
             </p>
           </div>
-          <div className="flex flex-row gap-3">
+          <div className="flex flex-row flex-wrap justify-center gap-3">
             <Button size="lg" className="gap-4" variant="outline" asChild>
               <Link href="/contact">
                 Get in touch <PhoneCall className="h-4 w-4" />
               </Link>
             </Button>
+            <UserHi />
           </div>
         </div>
       </div>

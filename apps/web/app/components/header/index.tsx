@@ -12,11 +12,14 @@ import {
 import { Menu, MoveRight, X } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
+import { useAuth } from '@repo/auth/client';
 
 import Image from 'next/image';
 import Logo from './logo.svg';
 
 export const Header = () => {
+  const auth = useAuth();
+
   const navigationItems = [
     {
       title: 'Home',
@@ -31,6 +34,7 @@ export const Header = () => {
   ];
 
   const [isOpen, setOpen] = useState(false);
+
   return (
     <header className="sticky top-0 left-0 z-40 w-full border-b bg-background">
       <div className="container relative mx-auto flex min-h-20 flex-row items-center gap-4 lg:grid lg:grid-cols-3">
@@ -66,12 +70,24 @@ export const Header = () => {
           <div>
             <ModeToggle />
           </div>
-          <Button variant="outline" asChild className="hidden md:inline">
-            <Link href={`${env.NEXT_PUBLIC_APP_URL}/sign-in`}>Sign in</Link>
-          </Button>
-          <Button asChild className="hidden md:inline">
-            <Link href={`${env.NEXT_PUBLIC_APP_URL}/sign-up`}>Get started</Link>
-          </Button>
+          {auth.isSignedIn ? (
+            <>
+              <Button asChild>
+                <Link href={`${env.NEXT_PUBLIC_APP_URL}/`}>App</Link>
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button variant="outline" asChild className="hidden md:inline">
+                <Link href={`${env.NEXT_PUBLIC_APP_URL}/sign-in`}>Sign in</Link>
+              </Button>
+              <Button asChild className="hidden md:inline">
+                <Link href={`${env.NEXT_PUBLIC_APP_URL}/sign-up`}>
+                  Get started
+                </Link>
+              </Button>
+            </>
+          )}
         </div>
         <div className="flex w-12 shrink items-end justify-end lg:hidden">
           <Button variant="ghost" onClick={() => setOpen(!isOpen)}>
