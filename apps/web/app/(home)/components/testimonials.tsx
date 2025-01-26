@@ -6,7 +6,7 @@ import {
   CarouselContent,
 } from '@repo/design-system/components/ui/carousel';
 import { useEffect, useState } from 'react';
-import { ExperienceItem } from '@repo/cms/blocks/Experience';
+import { ExperienceItem } from '@repo/cms';
 import { JobItem } from '@/app/(home)/components/jobItem';
 
 export const Testimonials = ({

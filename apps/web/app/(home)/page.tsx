@@ -1,5 +1,4 @@
-import { skills } from '@repo/cms/blocks/Skills';
-import { experience } from '@repo/cms/blocks/Experience';
+import { skills, experience } from '@repo/cms/';
 import { Feed } from '@repo/cms/components/feed';
 import { showBetaFeature } from '@repo/feature-flags';
 import { createMetadata } from '@repo/seo/metadata';

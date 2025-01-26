@@ -166,3 +166,50 @@ export const legal = {
     return data.legalPages.item;
   },
 };
+
+const skillFragment = fragmentOn('SkillsItem', {
+  name: true,
+  logo: true,
+});
+
+export type SkillItem = fragmentOn.infer<typeof skillFragment>;
+
+export const skills = {
+  postsQuery: fragmentOn('Query', {
+    personal: {
+      skills: {
+        items: skillFragment,
+      },
+    },
+  }),
+  getSkills: async (): Promise<SkillItem[]> => {
+    const data = await basehub.query(skills.postsQuery);
+
+    return data.personal.skills.items;
+  },
+};
+const experienceFragment = fragmentOn('ExperienceItem', {
+  companyName: true,
+  position: true,
+  location: true,
+  dateRange: true,
+  description: true,
+  image: imageFragment,
+});
+
+export type ExperienceItem = fragmentOn.infer<typeof experienceFragment>;
+
+export const experience = {
+  postsQuery: fragmentOn('Query', {
+    personal: {
+      experience: {
+        items: experienceFragment,
+      },
+    },
+  }),
+  getExperience: async (): Promise<ExperienceItem[]> => {
+    const data = await basehub.query(experience.postsQuery);
+
+    return data.personal.experience.items;
+  },
+};

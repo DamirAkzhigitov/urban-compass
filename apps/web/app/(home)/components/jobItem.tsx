@@ -1,5 +1,5 @@
 import { CarouselItem } from '@repo/design-system/components/ui/carousel';
-import { ExperienceItem } from '@repo/cms/blocks/Experience';
+import { ExperienceItem } from '@repo/cms';
 import Image from 'next/image';
 
 export const JobItem = ({ value }: { value: ExperienceItem }) => {
