@@ -1,25 +1,56 @@
-# next-forge
+# Portfolio website
 
-**Production-grade Turborepo template for Next.js apps.**
+### Tech Stack
 
-<div>
-  <img src="https://img.shields.io/npm/dy/next-forge" alt="" />
-  <img src="https://img.shields.io/npm/v/next-forge" alt="" />
-  <img src="https://img.shields.io/github/license/haydenbleasel/next-forge" alt="" />
-</div>
+**Frontend:**
+- Framework: **Next.js**
+- Styling: **TailwindCSS**
+- Animations: **Framer Motion**
+- Icon library: **Lucide-react**
+- Markdown rendering: **MDX Bundler**
+- Utility libraries: **Date-fns**, **React-wrap-balancer**
 
-[next-forge](https://github.com/haydenbleasel/next-forge) is a [Next.js](https://nextjs.org/) project boilerplate for modern web application. It is designed to be a comprehensive starting point for new apps, providing a solid, opinionated foundation with a minimal amount of configuration.
+**Backend:**
+- ORM: **Prisma**
+- Database Adapter: **@prisma/adapter-neon**
+- Environment management: **@t3-oss/env-nextjs**
+- Sentry integration: **@sentry/nextjs**
+- CMS: **basehub**
 
-Clone the repo using:
+**Testing:**
+- Framework: **Vitest**
+- React Testing: **@testing-library/react**, **@testing-library/dom**
+- JSDOM: **jsdom**
 
-```sh
-npx next-forge@latest init
+**Other Tools and Utilities:**
+- Feature flags: **@vercel/flags**
+- Toolkit: **@vercel/toolbar**
+- Text search: **Fuse.js**
+- Image processing: **Sharp**
+- Syntax highlighting: **Shiki**
+- Validation: **Zod**
+- Clerk integration: **@clerk/nextjs**
+
+Run development
+
+```shell
+pnpm dev
 ```
 
-Then read the [docs](https://docs.next-forge.com) for more information.
+Build
 
-<a href="https://github.com/haydenbleasel/next-forge/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=haydenbleasel/next-forge" />
-</a>
+```shell
+pnpm build
+```
 
-Made with [contrib.rocks](https://contrib.rocks).
+Migration
+
+```shell
+pnpm migration
+```
+
+---
+
+### Contacts
+- **Damir Akzhigitov**: [LinkedIn](https://www.linkedin.com/in/damir-akzhigitov/)
+- **Website**: [da-mr.com](https://da-mr.com)
