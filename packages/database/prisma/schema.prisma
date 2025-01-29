@@ -18,3 +18,8 @@ model Page {
   id   Int    @id @default(autoincrement())
   name String
 }
+
+model HiCounter {
+  id          Int      @id @default(autoincrement())
+  lastUpdated DateTime @default(now())
+}

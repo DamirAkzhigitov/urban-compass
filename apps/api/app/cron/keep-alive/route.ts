@@ -1,4 +1,5 @@
 import { database } from '@repo/database';
+import { NextRequest, NextResponse } from 'next/server';
 
 export const GET = async () => {
   const newPage = await database.page.create({
@@ -14,4 +15,10 @@ export const GET = async () => {
   });
 
   return new Response('OK', { status: 200 });
+};
+
+export const OPTIONS = async (request: NextRequest) => {
+  return new NextResponse('', {
+    status: 200,
+  });
 };

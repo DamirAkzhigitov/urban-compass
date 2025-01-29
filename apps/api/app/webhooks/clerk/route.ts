@@ -9,7 +9,7 @@ import type {
 } from '@repo/auth/server';
 import { log } from '@repo/observability/log';
 import { headers } from 'next/headers';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { Webhook } from 'svix';
 
 const handleUserCreated = (data: UserJSON) => {
@@ -115,7 +115,7 @@ const handleOrganizationUpdated = (data: OrganizationJSON) => {
 };
 
 const handleOrganizationMembershipCreated = (
-  data: OrganizationMembershipJSON
+  data: OrganizationMembershipJSON,
 ) => {
   analytics.groupIdentify({
     groupKey: data.organization.id,
@@ -132,7 +132,7 @@ const handleOrganizationMembershipCreated = (
 };
 
 const handleOrganizationMembershipDeleted = (
-  data: OrganizationMembershipJSON
+  data: OrganizationMembershipJSON,
 ) => {
   // Need to unlink the user from the group
 
@@ -230,4 +230,10 @@ export const POST = async (request: Request): Promise<Response> => {
   await analytics.shutdown();
 
   return response;
+};
+
+export const OPTIONS = async (request: NextRequest) => {
+  return new NextResponse('', {
+    status: 200,
+  });
 };

@@ -6,21 +6,21 @@ import { log } from '@repo/observability/log';
 import { stripe } from '@repo/payments';
 import type { Stripe } from '@repo/payments';
 import { headers } from 'next/headers';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 const getUserFromCustomerId = async (customerId: string) => {
   const clerk = await clerkClient();
   const users = await clerk.users.getUserList();
 
   const user = users.data.find(
-    (user) => user.privateMetadata.stripeCustomerId === customerId
+    (user) => user.privateMetadata.stripeCustomerId === customerId,
   );
 
   return user;
 };
 
 const handleCheckoutSessionCompleted = async (
-  data: Stripe.Checkout.Session
+  data: Stripe.Checkout.Session,
 ) => {
   if (!data.customer) {
     return;
@@ -41,7 +41,7 @@ const handleCheckoutSessionCompleted = async (
 };
 
 const handleSubscriptionScheduleCanceled = async (
-  data: Stripe.SubscriptionSchedule
+  data: Stripe.SubscriptionSchedule,
 ) => {
   if (!data.customer) {
     return;
@@ -78,7 +78,7 @@ export const POST = async (request: Request): Promise<Response> => {
     const event = stripe.webhooks.constructEvent(
       body,
       signature,
-      env.STRIPE_WEBHOOK_SECRET
+      env.STRIPE_WEBHOOK_SECRET,
     );
 
     switch (event.type) {
@@ -108,7 +108,13 @@ export const POST = async (request: Request): Promise<Response> => {
         message: 'something went wrong',
         ok: false,
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
+};
+
+export const OPTIONS = async (request: NextRequest) => {
+  return new NextResponse('', {
+    status: 200,
+  });
 };

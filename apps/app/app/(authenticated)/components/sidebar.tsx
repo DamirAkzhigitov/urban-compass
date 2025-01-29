@@ -1,5 +1,6 @@
 'use client';
 
+import { env } from '@/env';
 import { OrganizationSwitcher, UserButton } from '@repo/auth/client';
 import { ModeToggle } from '@repo/design-system/components/mode-toggle';
 import { Button } from '@repo/design-system/components/ui/button';
@@ -107,7 +108,7 @@ export const GlobalSidebar = ({ children }: GlobalSidebarProperties) => {
               <div
                 className={cn(
                   'h-[36px] overflow-hidden transition-all [&>div]:w-full',
-                  sidebar.open ? '' : '-mx-1'
+                  sidebar.open ? '' : '-mx-1',
                 )}
               >
                 <OrganizationSwitcher
@@ -234,29 +235,34 @@ export const GlobalSidebar = ({ children }: GlobalSidebarProperties) => {
         </SidebarContent>
         <SidebarFooter>
           <SidebarMenu>
-            <SidebarMenuItem className="flex items-center gap-2">
-              <UserButton
-                showName
-                appearance={{
-                  elements: {
-                    rootBox: 'flex overflow-hidden w-full',
-                    userButtonBox: 'flex-row-reverse',
-                    userButtonOuterIdentifier: 'truncate pl-0',
-                  },
-                }}
-              />
-              <div className="flex shrink-0 items-center gap-px">
-                <ModeToggle />
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="shrink-0"
-                  asChild
-                >
-                  <div className="h-4 w-4">
-                    <NotificationsTrigger />
-                  </div>
-                </Button>
+            <SidebarMenuItem className="flex flex-col gap-2">
+              <Link className="mb-4 font-light" href={env.NEXT_PUBLIC_WEB_URL}>
+                Return to landing
+              </Link>
+              <div className="flex items-center">
+                <UserButton
+                  showName
+                  appearance={{
+                    elements: {
+                      rootBox: 'flex overflow-hidden w-full',
+                      userButtonBox: 'flex-row-reverse',
+                      userButtonOuterIdentifier: 'truncate pl-0',
+                    },
+                  }}
+                />
+                <div className="flex shrink-0 items-center gap-px">
+                  <ModeToggle />
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="shrink-0"
+                    asChild
+                  >
+                    <div className="h-4 w-4">
+                      <NotificationsTrigger />
+                    </div>
+                  </Button>
+                </div>
               </div>
             </SidebarMenuItem>
           </SidebarMenu>
