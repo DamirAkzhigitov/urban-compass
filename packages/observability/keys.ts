@@ -6,6 +6,7 @@ export const keys = () =>
     server: {
       BETTERSTACK_API_KEY: z.string().min(1).optional(),
       BETTERSTACK_URL: z.string().min(1).url().optional(),
+      LOGTAIL_SOURCE_TOKEN: z.string().min(1).optional(),
 
       // Added by Sentry Integration, Vercel Marketplace
       SENTRY_ORG: z.string().min(1).optional(),
@@ -16,6 +17,7 @@ export const keys = () =>
       NEXT_PUBLIC_SENTRY_DSN: z.string().min(1).url().optional(),
     },
     runtimeEnv: {
+      LOGTAIL_SOURCE_TOKEN: process.env.LOGTAIL_SOURCE_TOKEN,
       BETTERSTACK_API_KEY: process.env.BETTERSTACK_API_KEY,
       BETTERSTACK_URL: process.env.BETTERSTACK_URL,
       SENTRY_ORG: process.env.SENTRY_ORG,
