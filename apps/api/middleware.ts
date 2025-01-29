@@ -6,6 +6,7 @@ const allowedOrigins = (process.env?.ALLOWED_ORIGIN || '').split(',');
 const corsOptions = {
   'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+  'Access-Control-Allow-Credentials': 'true',
 };
 
 export function middleware(request: NextRequest) {
