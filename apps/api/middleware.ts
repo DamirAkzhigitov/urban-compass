@@ -3,8 +3,6 @@ import { log } from '@repo/observability/log';
 
 const allowedOrigins = (process.env?.ALLOWED_ORIGIN || '').split(',');
 
-console.log('allowedOrigins: ', allowedOrigins);
-
 const corsOptions = {
   'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type, Authorization',
