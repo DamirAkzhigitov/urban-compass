@@ -1,80 +1,67 @@
 'use client';
 
-import { Button } from '@repo/design-system/components/ui/button';
+import { env } from '@/env';
+import { delay } from '@/utils';
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { Loader2 } from 'lucide-react';
-import { checkCounter, sendCounter } from '@/app/(home)/actions';
+import { Button } from '@repo/design-system/components/ui/button';
+import { Loader2, Loader } from 'lucide-react';
 
-const delay = () => new Promise((resolve) => setTimeout(resolve, 1000));
+import useFetch from '@/app/hooks/api/useFetch';
 
-const MotionButton = motion.create(Button);
+interface Counter {
+  count: number;
+}
 
 export const UserHi = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [count, setCount] = useState(0);
+  const { data, loading, execute: fetchCounter } = useFetch<Counter>();
+  const { execute: sendCounter } = useFetch<Counter>();
+  const {
+    data: haiku,
+    loading: haikuLoading,
+    execute: getHaiku,
+  } = useFetch<{ response: string[] }>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [statusText, setStatusText] = useState('Say Hi!');
-  const [cycle, setCycle] = useState(0);
-
-  useEffect(() => {
-    checkCounter().then((val) => val && setCount(val));
-  }, []);
 
   const onClickHi = async () => {
-    if (isLoading) return;
+    if (isLoading || !haiku?.response.length) return;
 
     setIsLoading(true);
-    sendCounter();
 
-    const isRepeat = cycle > 0;
-    const states = isRepeat
-      ? ['again?', 'okay..', 'thinking...', 'almost done...', 'Thank you!']
-      : ['thinking...', 'almost done...', 'Thank you!'];
+    await sendCounter(`${env.NEXT_PUBLIC_API_URL}/hiCounter`, {
+      method: 'POST',
+    });
 
-    for (let i = 0; i < states.length; i++) {
-      setStatusText(states[i]);
-      await delay();
+    for (let i = 0; i < haiku.response.length; i++) {
+      setStatusText(haiku.response[i]);
+      await delay(1500);
     }
 
     setIsLoading(false);
     setStatusText('Say Hi!');
-    setCycle((prev) => prev + 1);
-    checkCounter().then((val) => val && setCount(val));
+    await fetchCounter(`${env.NEXT_PUBLIC_API_URL}/hiCounter`);
+    await getHaiku(`${env.NEXT_PUBLIC_API_URL}/ai/haiku`);
   };
 
+  useEffect(() => {
+    fetchCounter(`${env.NEXT_PUBLIC_API_URL}/hiCounter`);
+    getHaiku(`${env.NEXT_PUBLIC_API_URL}/ai/haiku`);
+  }, []);
+
   return (
-    <div className="flex flex-row items-center gap-2">
-      <MotionButton
-        className={`
-          ${isLoading ? 'cursor-not-allowed' : ''}
-        `}
+    <div className="flex flex-row items-center gap-2 w-64">
+      <Button
+        className="w-ful flex-auto"
+        size="lg"
         onClick={onClickHi}
         disabled={isLoading}
-        whileTap={{ scale: 0.95 }}
-        animate={
-          isLoading && statusText === 'Done!' ? { scale: [1, 1.2, 1] } : {}
-        }
-        transition={{ duration: 0.3 }}
       >
-        {isLoading && statusText !== 'Done!' ? (
-          <Loader2 className="animate-spin w-5 h-5 mr-2" />
-        ) : null}
         {statusText}
-      </MotionButton>
+      </Button>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="text-center font-bold"
-      >
-        <p className="animate-pulse">
-          Total hellos:{' '}
-          <span className="text-pink-500" id="counter">
-            {count}
-          </span>
-        </p>
-      </motion.div>
+      <p className="animate-pulse flex items-center text-xs md:text-sm h-10 border rounded-md p-2 overflow-hidden font-bold min-w-10 justify-center">
+        {loading ? <Loader className="animate-spin w-5 h-5" /> : data?.count}
+      </p>
     </div>
   );
 };
