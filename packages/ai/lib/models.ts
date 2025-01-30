@@ -1,12 +1,11 @@
-import { createOpenAI } from '@ai-sdk/openai';
 import { keys } from '../keys';
+import OpenAI from 'openai';
 
-const openai = createOpenAI({
+export const openai = new OpenAI({
+  baseURL: 'https://openrouter.ai/api/v1',
   apiKey: keys().OPENAI_API_KEY,
-  compatibility: 'strict',
+  defaultHeaders: {
+    'HTTP-Referer': 'https://da-mr.com',
+    'X-Title': 'https://da-mr.com',
+  },
 });
-
-export const models = {
-  chat: openai('gpt-4o-mini'),
-  embeddings: openai('text-embedding-3-small'),
-};
