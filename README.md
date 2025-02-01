@@ -41,10 +41,10 @@
 | Fedora, Release 41                | 22.11.0    |
 | Windows 11 Pro 24H2 (26100.2033)  | 20.18.0        |
 
-Package manager: pnpm https://pnpm.io/installation)
-Stripe CLI: https://docs.stripe.com/stripe-cli
-Mintlify CLI: https://mintlify.com/docs/development
-Vercel CLI: https://vercel.com/docs/cli
+* Package manager: pnpm https://pnpm.io/installation)
+* Stripe CLI: https://docs.stripe.com/stripe-cli
+* Mintlify CLI: https://mintlify.com/docs/development
+* Vercel CLI: https://vercel.com/docs/cli
 
 ### Accounts
 
