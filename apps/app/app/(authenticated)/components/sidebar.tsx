@@ -80,14 +80,26 @@ const data: SideBarData = {
   },
   navMain: [
     {
-      title: 'Playground',
+      title: 'Stream Overlay',
       url: '/',
       icon: SquareTerminalIcon,
       isActive: true,
       items: [
         {
-          title: 'Code Review',
-          url: '/code-review',
+          title: 'Create',
+          url: '/stream-overlay/create/',
+        },
+        {
+          title: 'Library',
+          url: '/stream-overlay/library/',
+        },
+        {
+          title: 'Marketplace',
+          url: '/stream-overlay/marketplace/',
+        },
+        {
+          title: 'Settings',
+          url: '/stream-overlay/settings',
         },
       ],
     },

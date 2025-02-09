@@ -9,6 +9,20 @@ const corsOptions = {
 };
 
 export function middleware(request: NextRequest) {
+  const customHeader = request.headers.get('X-DA-Auth');
+
+  // Если заголовок отсутствует или не соответствует ожидаемому значению
+  if (!customHeader || customHeader !== 'true') {
+    // Возвращаем ответ с ошибкой
+    return new NextResponse(
+      JSON.stringify({ message: 'Missing or invalid header' }),
+      {
+        status: 403, // Forbidden
+        headers: { 'Content-Type': 'application/json' },
+      },
+    );
+  }
+
   const origin = request.headers.get('origin') ?? '';
   const isAllowedOrigin = allowedOrigins.includes(origin);
   const isPreflight = request.method === 'OPTIONS';
