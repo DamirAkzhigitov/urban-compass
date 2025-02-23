@@ -4,7 +4,6 @@ import { Button } from '@repo/design-system/components/ui/button';
 import { MoveRight, PhoneCall } from 'lucide-react';
 import { draftMode } from 'next/headers';
 import Link from 'next/link';
-import { UserHi } from '@/app/(home)/components/user-hi';
 
 export const Hero = async () => {
   const draft = await draftMode();
