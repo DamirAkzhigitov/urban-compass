@@ -29,7 +29,7 @@ export const PostHogIdentifier = () => {
       return;
     }
 
-    analytics.identify(user.id, {
+    analytics?.identify(user.id, {
       email: user.emailAddresses.at(0)?.emailAddress,
       firstName: user.firstName,
       lastName: user.lastName,
