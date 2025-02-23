@@ -51,7 +51,6 @@ export const Hero = async () => {
                 Get in touch <PhoneCall className="h-4 w-4" />
               </Link>
             </Button>
-            <UserHi />
           </div>
         </div>
       </div>
