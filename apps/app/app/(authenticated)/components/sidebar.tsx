@@ -41,7 +41,6 @@ import {
   FolderIcon,
   MoreHorizontalIcon,
   ShareIcon,
-  SquareTerminalIcon,
   Trash2Icon,
 } from 'lucide-react';
 import Link from 'next/link';
@@ -62,36 +61,13 @@ interface SideBarLinkItem {
 }
 
 interface SideBarData {
-  user: {
-    name: string;
-    email: string;
-    avatar: string;
-  };
   navMain: SideBarLinkItem[];
   navSecondary: SideBarLinkItem[];
   projects: SideBarLinkItem[];
 }
 
 const data: SideBarData = {
-  user: {
-    name: 'shadcn',
-    email: 'm@example.com',
-    avatar: '/avatars/shadcn.jpg',
-  },
-  navMain: [
-    {
-      title: 'Playground',
-      url: '/',
-      icon: SquareTerminalIcon,
-      isActive: true,
-      items: [
-        {
-          title: 'Code Review',
-          url: '/code-review',
-        },
-      ],
-    },
-  ],
+  navMain: [],
   navSecondary: [],
   projects: [],
 };
